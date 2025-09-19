@@ -70,6 +70,8 @@ function showQuestion() {
   
    if (currentQuestion >= questions.length) {
     // TODO: Show end screen
+    document.getElementById("endScreen").style - '':
+
    } else {
 
   let question = questions[currentQuestion];
