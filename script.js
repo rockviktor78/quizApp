@@ -67,6 +67,11 @@ function init() {
 }
 
 function showQuestion() {
+  
+   if (currentQuestion >= questions.length) {
+    // TODO: Show end screen
+   } else {
+
   let question = questions[currentQuestion];
   
   document.getElementById("question-number").innerHTML = currentQuestion + 1;
@@ -75,6 +80,7 @@ function showQuestion() {
   document.getElementById("answer_2").innerHTML = question["answer_2"];
   document.getElementById("answer_3").innerHTML = question["answer_3"];
   document.getElementById("answer_4").innerHTML = question["answer_4"];
+  }
 }
 
 
