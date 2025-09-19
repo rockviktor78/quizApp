@@ -70,7 +70,7 @@ function showQuestion() {
   
    if (currentQuestion >= questions.length) {
     // TODO: Show end screen
-    document.getElementById("endScreen").style - '':
+    document.getElementById("endScreen").style - '';
 
    } else {
 
