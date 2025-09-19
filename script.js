@@ -81,7 +81,6 @@ function showQuestion() {
 
 
 
-
 function answer(selection) {
   let question = questions[currentQuestion];
   let selectedQestionNumber = selection.slice(-1);
@@ -98,5 +97,18 @@ function answer(selection) {
 
 function nextQuestion() {
   currentQuestion++; // Z.b von 0 auf 1 erhöhen
+  document.getElementById("next-button").disabled = true;
+  resetAnswersButtons();
   showQuestion();
+}
+
+function resetAnswersButtons() {
+  document.getElementById("answer_1").parentNode.classList.remove("bg-danger");
+  document.getElementById("answer_1").parentNode.classList.remove("bg-success");
+  document.getElementById("answer_2").parentNode.classList.remove("bg-danger");
+  document.getElementById("answer_2").parentNode.classList.remove("bg-success");
+  document.getElementById("answer_3").parentNode.classList.remove("bg-danger");
+  document.getElementById("answer_3").parentNode.classList.remove("bg-success");
+  document.getElementById("answer_4").parentNode.classList.remove("bg-danger");
+  document.getElementById("answer_4").parentNode.classList.remove("bg-success");
 }
