@@ -68,7 +68,8 @@ function init() {
 
 function showQuestion() {
   let question = questions[currentQuestion];
-
+  
+  document.getElementById("question-number").innerHTML = currentQuestion + 1;
   document.getElementById("questionText").innerHTML = question["question"];
   document.getElementById("answer_1").innerHTML = question["answer_1"];
   document.getElementById("answer_2").innerHTML = question["answer_2"];
@@ -76,16 +77,27 @@ function showQuestion() {
   document.getElementById("answer_4").innerHTML = question["answer_4"];
 }
 
+
+
+
+
+
 function answer(selection) {
   let question = questions[currentQuestion];
-  console.log("Selected answer is ", selection);
   let selectedQestionNumber = selection.slice(-1);
-  console.log("SelectedQuestionNumber is ", selectedQestionNumber);
-  console.log("Current question is ", question["right_answer"]);
+  let idOfRightAnswer = `answer_${question["right_answer"]}`;
 
   if (selectedQestionNumber == question["right_answer"]) {
     console.log("Richtige Antwort!!");
+    document.getElementById(selection).parentNode.classList.add("bg-success");
   } else {
-    console.log("Falsche Antwort!!!");
+    document.getElementById(selection).parentNode.classList.add("bg-danger");
+    document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
   }
+   document.getElementById("next-button").disabled = false;
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  showQuestion();
 }
