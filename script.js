@@ -88,7 +88,6 @@ function answer(selection) {
   let idOfRightAnswer = `answer_${question["right_answer"]}`;
 
   if (selectedQestionNumber == question["right_answer"]) {
-    console.log("Richtige Antwort!!");
     document.getElementById(selection).parentNode.classList.add("bg-success");
   } else {
     document.getElementById(selection).parentNode.classList.add("bg-danger");
@@ -98,6 +97,6 @@ function answer(selection) {
 }
 
 function nextQuestion() {
-  currentQuestion++;
+  currentQuestion++; // Z.b von 0 auf 1 erhöhen
   showQuestion();
 }
