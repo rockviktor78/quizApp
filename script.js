@@ -71,7 +71,7 @@ function showQuestion() {
    if (currentQuestion >= questions.length) {
     // TODO: Show end screen
     document.getElementById("endScreen").style - '';
-
+    document.getElementById("questionBody").style = 'display = "none';
    } else {
 
   let question = questions[currentQuestion];
