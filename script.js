@@ -71,24 +71,35 @@ function init() {
 }
 
 function showQuestion() {
-  if (currentQuestion >= questions.length) {
-    // Show end screen
+  if (gameIsOver()) {
+      showEndScreen();
+  } else {
+      updateProgressBar();
+      updateToNextQuestion();
+  }
+}
+
+function gameIsOver(){
+  return currentQuestion >= questions.length;
+}
+
+function showEndScreen (){
     document.getElementById("endScreen").style = "";
     document.getElementById("questionBody").style = "display: none";
-
     document.getElementById("amount-of-questions").innerHTML = questions.length;
-    document.getElementById("amount-of-right-questions").innerHTML =
-      rightQuestions;
+    document.getElementById("amount-of-right-questions").innerHTML = rightQuestions;
     document.getElementById("header-image").src = "Quizapp/brain_result.png";
-  } else {
-    // Show question
+}
 
+function updateProgressBar(){
     let percent = (currentQuestion + 1) / questions.length;
     percent = Math.round(percent * 100);
-
-   
     document.getElementById("progress-bar").innerHTML = `${percent} %`;
     document.getElementById("progress-bar").style = `width: ${percent}%`;
+}
+
+function updateToNextQuestion(){
+   
 
     let question = questions[currentQuestion];
 
@@ -98,7 +109,6 @@ function showQuestion() {
     document.getElementById("answer_2").innerHTML = question["answer_2"];
     document.getElementById("answer_3").innerHTML = question["answer_3"];
     document.getElementById("answer_4").innerHTML = question["answer_4"];
-  }
 }
 
 function answer(selection) {
@@ -106,8 +116,7 @@ function answer(selection) {
   let selectedQestionNumber = selection.slice(-1);
   let idOfRightAnswer = `answer_${question["right_answer"]}`;
 
-  if (selectedQestionNumber == question["right_answer"]) {
-    // Richtige Frage beantwortet
+  if (rightAnswerSelected(selectedQestionNumber)) {// Richtige Frage beantwortet
     document.getElementById(selection).parentNode.classList.add("bg-success");
     AUDIO_SUCCESS.play();
     rightQuestions++;
@@ -118,8 +127,12 @@ function answer(selection) {
       .parentNode.classList.add("bg-success");
       AUDIO_FAIL.play();
   }
-  
   document.getElementById("next-button").disabled = false;
+}
+
+function rightAnswerSelected(selectedQestionNumber){
+  let question = questions[currentQuestion];
+  return selectedQestionNumber == question["right_answer"];
 }
 
 function nextQuestion() {
