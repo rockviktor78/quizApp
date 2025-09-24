@@ -22,11 +22,12 @@ body {
 }
 
 .quiz-answer-card:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-.bg-success, .bg-danger {
+.bg-success,
+.bg-danger {
   color: white !important;
 }
 
@@ -36,4 +37,15 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.final-headline {
+  font-size: 38px;
+  margin-bottom: 32px;
+  padding: 1rem;
+}
+
+.card-img-top {
+      padding-bottom: 1rem;
+
 }

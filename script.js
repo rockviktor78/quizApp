@@ -58,6 +58,8 @@ let questions = [
   },
 ];
 
+let rightQuestions = 0;
+
 let currentQuestion = 0;
 
 function init() {
@@ -72,10 +74,21 @@ function showQuestion() {
   
   
   if (currentQuestion >= questions.length) {
-    // TODO: Show end screen
+    // Show end screen
     document.getElementById("endScreen").style = '';
     document.getElementById("questionBody").style = 'display: none';
-   } else {
+
+    document.getElementById("amount-of-questions").innerHTML = questions.length;
+    document.getElementById("amount-of-right-questions").innerHTML = rightQuestions;
+    document.getElementById("header-image").src = "Quizapp/brain_result.png";
+   } else { // Show question
+
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+  
+    console.log('Fortschritt',percent);
+    document.getElementById("progress-bar").innerHTML = `${percent} %`;
+    document.getElementById("progress-bar").style = `width: ${percent}%`;
 
   let question = questions[currentQuestion];
   
@@ -97,8 +110,9 @@ function answer(selection) {
   let selectedQestionNumber = selection.slice(-1);
   let idOfRightAnswer = `answer_${question["right_answer"]}`;
 
-  if (selectedQestionNumber == question["right_answer"]) {
+  if (selectedQestionNumber == question["right_answer"]) { // Richtige Frage beantwortet
     document.getElementById(selection).parentNode.classList.add("bg-success");
+    rightQuestions++;
   } else {
     document.getElementById(selection).parentNode.classList.add("bg-danger");
     document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
